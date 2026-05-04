@@ -210,7 +210,7 @@ LDH_CORS_ALLOWED_ORIGINS=https://tudominio.com
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/ldh.git
+git clone https://github.com/Ennhila/ldh.git
 cd ldh
 ```
 
@@ -709,7 +709,7 @@ Distribuido bajo licencia **MIT**. Ver `LICENSE` para detalles.
 
 - **Issues**: Reportar bugs en la sección de Issues
 - **Discussions**: Preguntas y propuestas en Discussions
-- **Email**: (añadir si aplica)
+- **Email**: ennhila78@gmail.com
 
 ---
 
