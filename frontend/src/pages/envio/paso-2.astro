@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import WizardFooter from '../../components/checkout/WizardFooter.astro';
+import { WizardHeader } from '../../components/checkout/WizardHeader';
+import { ShippingStepTwoPage } from '../../components/checkout/ShippingStepTwoPage';
+---
+
+<Layout
+  title="LDH — Paso 2: remitente"
+  description="Datos del remitente para tu envío LDH."
+>
+  <div class="flex min-h-screen flex-col">
+    <WizardHeader client:load />
+    <ShippingStepTwoPage client:load />
+    <WizardFooter />
+  </div>
+</Layout>

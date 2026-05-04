@@ -1,0 +1,38 @@
+---
+const legal = [
+  { label: 'Política de cookies', href: '#cookies' },
+  { label: 'Aviso legal', href: '#aviso' },
+  { label: 'Privacidad web', href: '#privacidad' },
+  { label: 'Alerta seguridad', href: '#seguridad' },
+  { label: 'Configurador de cookies', href: '#config-cookies' },
+];
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-auto bg-slate-900 py-10 text-slate-300">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col gap-6 border-b border-slate-700 pb-8 sm:flex-row sm:items-center sm:justify-between">
+      <a href="/" class="inline-flex" aria-label="LDH">
+        <img
+          src="/images/logo.png"
+          alt=""
+          class="h-8 w-auto opacity-90 brightness-0 invert"
+          width="120"
+          height="32"
+        />
+      </a>
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm" aria-label="Legal">
+        {
+          legal.map((item) => (
+            <a href={item.href} class="hover:text-white">
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+    <p class="mt-6 text-center text-[11px] text-slate-500">
+      © {year} LDH. Demo.
+    </p>
+  </div>
+</footer>

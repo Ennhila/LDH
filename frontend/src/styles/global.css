@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ldh-navy: #2d3e8b;
+  --color-ldh-navy-dark: #1e2a5e;
+  --color-ldh-orange: #ff6600;
+  --color-ldh-orange-hover: #e65c00;
+  --color-ldh-gold: #fdb813;
+  --color-ldh-muted: #64748b;
+  --color-ldh-surface: #f1f5f9;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Global corner radius: 8px across the design system */
+  --radius-xs: 8px;
+  --radius-sm: 8px;
+  --radius-md: 8px;
+  --radius-lg: 8px;
+  --radius-xl: 8px;
+  --radius-2xl: 8px;
+  --radius-3xl: 8px;
+  --radius-4xl: 8px;
+  --radius: 8px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-slate-900 font-sans antialiased;
+  }
+}

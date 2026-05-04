@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<changeSet id="001-users" author="ldh">
+		<createTable tableName="users">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="email" type="VARCHAR(255)">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="password_hash" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="full_name" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="postal_code" type="VARCHAR(10)" />
+			<column name="phone" type="VARCHAR(32)" />
+			<column name="role" type="VARCHAR(32)">
+				<constraints nullable="false" />
+			</column>
+			<column name="enabled" type="BOOLEAN" defaultValueBoolean="true">
+				<constraints nullable="false" />
+			</column>
+			<column name="shift_active" type="BOOLEAN" defaultValueBoolean="false">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_at" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="updated_at" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="last_login_at" type="TIMESTAMP" />
+		</createTable>
+	</changeSet>
+
+	<changeSet id="002-oficinas" author="ldh">
+		<createTable tableName="oficinas">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="address_line" type="VARCHAR(512)">
+				<constraints nullable="false" />
+			</column>
+			<column name="postal_code" type="VARCHAR(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="city" type="VARCHAR(128)">
+				<constraints nullable="false" />
+			</column>
+			<column name="latitude" type="DOUBLE" />
+			<column name="longitude" type="DOUBLE" />
+			<column name="created_at" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="updated_at" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="003-envios" author="ldh">
+		<createTable tableName="envios">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="tracking_number" type="VARCHAR(32)">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="client_user_id" type="BIGINT">
+				<constraints nullable="false"
+					foreignKeyName="fk_envio_client"
+					references="users(id)" />
+			</column>
+			<column name="assigned_repartidor_id" type="BIGINT">
+				<constraints foreignKeyName="fk_envio_repartidor"
+					references="users(id)" />
+			</column>
+			<column name="status" type="VARCHAR(32)">
+				<constraints nullable="false" />
+			</column>
+			<column name="origin_address" type="VARCHAR(512)" />
+			<column name="origin_postal_code" type="VARCHAR(10)" />
+			<column name="destination_address" type="VARCHAR(512)" />
+			<column name="destination_postal_code" type="VARCHAR(10)" />
+			<column name="package_weight_kg" type="DOUBLE" />
+			<column name="package_length_cm" type="DOUBLE" />
+			<column name="package_width_cm" type="DOUBLE" />
+			<column name="package_height_cm" type="DOUBLE" />
+			<column name="sender_name" type="VARCHAR(255)" />
+			<column name="sender_phone" type="VARCHAR(32)" />
+			<column name="recipient_name" type="VARCHAR(255)" />
+			<column name="recipient_phone" type="VARCHAR(32)" />
+			<column name="total_amount_cents" type="BIGINT" />
+			<column name="currency" type="VARCHAR(8)" defaultValue="EUR" />
+			<column name="notes" type="VARCHAR(1024)" />
+			<column name="current_latitude" type="DOUBLE" />
+			<column name="current_longitude" type="DOUBLE" />
+			<column name="last_location_label" type="VARCHAR(255)" />
+			<column name="created_at" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="updated_at" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<createIndex indexName="idx_envios_client" tableName="envios">
+			<column name="client_user_id" />
+		</createIndex>
+		<createIndex indexName="idx_envios_status" tableName="envios">
+			<column name="status" />
+		</createIndex>
+	</changeSet>
+
+</databaseChangeLog>

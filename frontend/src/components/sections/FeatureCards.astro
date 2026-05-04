@@ -1,0 +1,15 @@
+---
+import { TrackingCard } from './TrackingCard';
+import { ShippingForm } from './ShippingForm';
+---
+
+<section
+  id="tracking"
+  class="relative z-20 -mt-16 scroll-mt-24 px-4 pb-16 sm:-mt-24 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24"
+  aria-label="Seguimiento y envíos"
+>
+  <div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2 lg:gap-8">
+    <TrackingCard client:load />
+    <ShippingForm client:load />
+  </div>
+</section>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<changeSet id="005-envio-checkout-snapshot" author="ldh">
+		<addColumn tableName="envios">
+			<column name="checkout_snapshot_json" type="CLOB" />
+		</addColumn>
+	</changeSet>
+</databaseChangeLog>

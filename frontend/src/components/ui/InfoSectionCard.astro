@@ -1,0 +1,102 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  /** card-leading: texto a la izquierda en desktop; image-leading: foto a la izquierda */
+  variant?: 'card-leading' | 'image-leading';
+  showDotGrid?: boolean;
+}
+
+const {
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+  variant = 'card-leading',
+  showDotGrid = false,
+} = Astro.props;
+
+const cardFirst = variant === 'card-leading';
+---
+
+<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+  <div class="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
+    {
+      cardFirst ? (
+        <>
+          <div class="relative order-1 flex lg:order-1">
+            <div class="relative flex w-full flex-col justify-center rounded-2xl border border-slate-100 bg-white p-8 shadow-lg shadow-slate-900/5 sm:p-10">
+              {showDotGrid && (
+                <div
+                  class="pointer-events-none absolute top-6 right-6 hidden grid-cols-3 gap-1.5 sm:grid"
+                  aria-hidden="true"
+                >
+                  {Array.from({ length: 9 }).map(() => (
+                    <span class="h-2 w-2 rounded-lg bg-ldh-orange/80" />
+                  ))}
+                </div>
+              )}
+              <h2 class="text-2xl font-bold text-ldh-navy sm:text-3xl">{title}</h2>
+              <p class="mt-4 text-base leading-relaxed text-ldh-muted">{description}</p>
+              <a
+                href="#mas-info"
+                class="mt-6 inline-flex items-center gap-1 text-sm font-bold uppercase tracking-wide text-ldh-navy hover:text-ldh-orange"
+              >
+                Más info
+                <span aria-hidden="true">&gt;</span>
+              </a>
+            </div>
+          </div>
+          <div class="relative order-2 flex lg:order-2">
+            <div class="relative w-full overflow-hidden rounded-2xl bg-slate-100 shadow-lg shadow-slate-900/5">
+              <img
+                src={imageSrc}
+                alt={imageAlt}
+                class="h-full min-h-[240px] w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div class="relative flex">
+            <div class="relative w-full overflow-hidden rounded-2xl bg-slate-100 shadow-lg shadow-slate-900/5">
+              <img
+                src={imageSrc}
+                alt={imageAlt}
+                class="h-full min-h-[240px] w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="relative flex">
+            <div class="relative flex w-full flex-col justify-center rounded-2xl border border-slate-100 bg-white p-8 shadow-lg shadow-slate-900/5 sm:p-10">
+              {showDotGrid && (
+                <div
+                  class="pointer-events-none absolute top-6 right-6 hidden grid-cols-3 gap-1.5 sm:grid"
+                  aria-hidden="true"
+                >
+                  {Array.from({ length: 9 }).map(() => (
+                    <span class="h-2 w-2 rounded-lg bg-ldh-orange/80" />
+                  ))}
+                </div>
+              )}
+              <h2 class="text-2xl font-bold text-ldh-navy sm:text-3xl">{title}</h2>
+              <p class="mt-4 text-base leading-relaxed text-ldh-muted">{description}</p>
+              <a
+                href="#mas-info"
+                class="mt-6 inline-flex items-center gap-1 text-sm font-bold uppercase tracking-wide text-ldh-navy hover:text-ldh-orange"
+              >
+                Más info
+                <span aria-hidden="true">&gt;</span>
+              </a>
+            </div>
+          </div>
+        </>
+      )
+    }
+  </div>
+</section>

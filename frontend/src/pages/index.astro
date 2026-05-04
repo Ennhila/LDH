@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/layout/SiteHeader';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import FeatureCards from '../components/sections/FeatureCards.astro';
+import AppPromo from '../components/sections/AppPromo.astro';
+import InfoSectionCard from '../components/ui/InfoSectionCard.astro';
+---
+
+<Layout>
+  <SiteHeader client:load />
+  <main>
+    <div id="login" class="sr-only" aria-hidden="true">Usa /login para acceder</div>
+    <Hero />
+    <FeatureCards />
+    <div class="bg-white">
+      <InfoSectionCard
+        variant="card-leading"
+        title="¿Estás esperando un envío?"
+        description="Consulta el estado en tiempo real, elige locker u oficina para la entrega y recibe avisos cuando tu paquete esté listo para recoger. Menos incertidumbre y más control sobre tu tiempo."
+        imageSrc="/images/info-waiting.png"
+        imageAlt="Persona abriendo paquetes en casa"
+      />
+      <InfoSectionCard
+        variant="image-leading"
+        title="¿Quieres hacer un envío?"
+        description="Cotiza en unos clics, compara opciones según peso y destino, y prepárate para cuando conectemos el checkout con tu cuenta. Ideal para envíos puntuales o para tu negocio."
+        imageSrc="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80"
+        imageAlt="Persona preparando cajas para envío"
+        showDotGrid={true}
+      />
+    </div>
+    <AppPromo />
+  </main>
+  <Footer />
+</Layout>

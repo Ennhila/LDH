@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<changeSet id="004-shipping-zones" author="ldh">
+		<createTable tableName="shipping_zones">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="code" type="VARCHAR(64)">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="name" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="international" type="BOOLEAN" defaultValueBoolean="false">
+				<constraints nullable="false" />
+			</column>
+			<column name="display_order" type="INT" defaultValueNumeric="0">
+				<constraints nullable="false" />
+			</column>
+			<column name="flag_emoji" type="VARCHAR(16)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet id="005-zone-prefixes" author="ldh">
+		<createTable tableName="zone_prefixes">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="zone_id" type="BIGINT">
+				<constraints nullable="false"
+					foreignKeyName="fk_zone_prefix_zone"
+					references="shipping_zones(id)" />
+			</column>
+			<column name="prefix" type="VARCHAR(16)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addUniqueConstraint tableName="zone_prefixes" columnNames="zone_id, prefix"
+			constraintName="uk_zone_prefix" />
+	</changeSet>
+
+	<changeSet id="006-price-matrix" author="ldh">
+		<createTable tableName="price_matrix_cells">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="origin_zone_id" type="BIGINT">
+				<constraints nullable="false"
+					foreignKeyName="fk_matrix_origin"
+					references="shipping_zones(id)" />
+			</column>
+			<column name="dest_zone_id" type="BIGINT">
+				<constraints nullable="false"
+					foreignKeyName="fk_matrix_dest"
+					references="shipping_zones(id)" />
+			</column>
+			<column name="base_price" type="DECIMAL(12,2)">
+				<constraints nullable="false" />
+			</column>
+			<column name="price_per_kg_over_1" type="DECIMAL(12,2)" defaultValueNumeric="0" />
+			<column name="price_per_kg_over_5" type="DECIMAL(12,2)" defaultValueNumeric="0" />
+			<column name="price_per_kg_over_20" type="DECIMAL(12,2)" defaultValueNumeric="0" />
+			<column name="fuel_surcharge" type="DECIMAL(12,2)" defaultValueNumeric="0" />
+			<column name="remote_area_surcharge" type="DECIMAL(12,2)" defaultValueNumeric="0" />
+			<column name="valid_from" type="DATE" />
+			<column name="valid_to" type="DATE" />
+			<column name="active" type="BOOLEAN" defaultValueBoolean="true">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addUniqueConstraint tableName="price_matrix_cells" columnNames="origin_zone_id, dest_zone_id"
+			constraintName="uk_matrix_od" />
+	</changeSet>
+
+	<changeSet id="007-delivery-modifiers" author="ldh">
+		<createTable tableName="delivery_type_modifiers">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="code" type="VARCHAR(32)">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="label" type="VARCHAR(128)">
+				<constraints nullable="false" />
+			</column>
+			<column name="multiplier" type="DECIMAL(8,4)">
+				<constraints nullable="false" />
+			</column>
+			<column name="flat_surcharge" type="DECIMAL(12,2)">
+				<constraints nullable="false" />
+			</column>
+			<column name="active" type="BOOLEAN" defaultValueBoolean="true">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+</databaseChangeLog>

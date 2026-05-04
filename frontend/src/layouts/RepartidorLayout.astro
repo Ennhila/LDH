@@ -1,0 +1,59 @@
+---
+import Layout from './Layout.astro';
+
+const cur = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const nav = [
+  { href: '/repartidor', label: 'Envíos activos' },
+  { href: '/repartidor/historial', label: 'Entregados e incidencias' },
+] as const;
+
+function navClass(href: string) {
+  const active =
+    href === '/repartidor'
+      ? cur === '/repartidor'
+      : cur === href || cur.startsWith(`${href}/`);
+  return active ? 'bg-white/15 text-white font-semibold' : 'text-slate-200 hover:bg-white/10';
+}
+---
+
+<Layout title="Repartidor LDH">
+  <div class="flex min-h-screen bg-slate-100">
+    <aside class="flex w-56 shrink-0 flex-col bg-slate-800 text-white">
+      <div class="border-b border-white/10 px-4 py-5">
+        <p class="text-lg font-bold">LDH Repartidor</p>
+        <p class="text-xs text-slate-300">Operaciones de campo</p>
+      </div>
+      <nav class="flex flex-1 flex-col gap-1 p-3">
+        {
+          nav.map((item) => (
+            <a
+              href={item.href}
+              class:list={['rounded-md px-3 py-2 text-sm transition', navClass(item.href)]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+      <div class="border-t border-white/10 p-3">
+        <button
+          type="button"
+          class="w-full rounded-md px-3 py-2 text-left text-sm text-slate-200 hover:bg-white/10"
+          id="ldh-rep-logout"
+        >
+          Cerrar sesión
+        </button>
+      </div>
+    </aside>
+    <main class="flex-1 p-6 lg:p-8">
+      <slot />
+    </main>
+  </div>
+  <script>
+    document.getElementById('ldh-rep-logout')?.addEventListener('click', () => {
+      localStorage.removeItem('ldh_token');
+      location.href = '/login';
+    });
+  </script>
+</Layout>

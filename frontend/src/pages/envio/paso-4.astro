@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import WizardFooter from '../../components/checkout/WizardFooter.astro';
+import { WizardHeader } from '../../components/checkout/WizardHeader';
+import { ShippingStepFourPage } from '../../components/checkout/ShippingStepFourPage';
+---
+
+<Layout title="LDH — Paso 4: resumen y pago" description="Resumen del envío LDH.">
+  <div class="flex min-h-screen flex-col">
+    <WizardHeader client:load />
+    <ShippingStepFourPage client:load />
+    <WizardFooter />
+  </div>
+</Layout>

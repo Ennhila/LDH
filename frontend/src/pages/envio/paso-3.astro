@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import WizardFooter from '../../components/checkout/WizardFooter.astro';
+import { WizardHeader } from '../../components/checkout/WizardHeader';
+import { ShippingStepThreePage } from '../../components/checkout/ShippingStepThreePage';
+---
+
+<Layout title="LDH — Paso 3: destinatario" description="Destinatario del envío (en construcción).">
+  <div class="flex min-h-screen flex-col">
+    <WizardHeader client:load />
+    <ShippingStepThreePage client:load />
+    <WizardFooter />
+  </div>
+</Layout>

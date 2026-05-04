@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/layout/SiteHeader';
+import Footer from '../components/layout/Footer.astro';
+import { TrackingCard } from '../components/sections/TrackingCard';
+---
+
+<Layout
+  title="LDH — Seguimiento de envío"
+  description="Consulta el estado de tu envío con el número de seguimiento, sin iniciar sesión."
+>
+  <SiteHeader client:load />
+  <main class="min-h-[60vh] bg-slate-50">
+    <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8" aria-label="Seguimiento público">
+      <div class="mx-auto max-w-2xl">
+        <TrackingCard client:load />
+      </div>
+      <p class="mx-auto mt-8 max-w-2xl text-center text-sm text-slate-600">
+        ¿Tienes cuenta?
+        <a href="/login" class="font-semibold text-ldh-orange underline hover:text-ldh-navy">Inicia sesión</a>
+        para ver todos tus envíos en
+        <a href="/cuenta/mis-envios" class="font-semibold text-ldh-orange underline hover:text-ldh-navy">
+          Mis envíos
+        </a>
+        .
+      </p>
+    </section>
+  </main>
+  <Footer />
+</Layout>

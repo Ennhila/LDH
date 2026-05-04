@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<changeSet id="006-envio-audit-exception" author="ldh">
+		<addColumn tableName="envios">
+			<column name="exception_reason" type="VARCHAR(255)" />
+			<column name="exception_notes" type="CLOB" />
+		</addColumn>
+		<createTable tableName="envio_status_audit">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="envio_id" type="BIGINT">
+				<constraints nullable="false" foreignKeyName="fk_audit_envio" references="envios(id)" />
+			</column>
+			<column name="old_status" type="VARCHAR(32)" />
+			<column name="new_status" type="VARCHAR(32)">
+				<constraints nullable="false" />
+			</column>
+			<column name="changed_at" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="actor_user_id" type="BIGINT">
+				<constraints foreignKeyName="fk_audit_actor" references="users(id)" />
+			</column>
+			<column name="actor_email" type="VARCHAR(255)" />
+			<column name="notes" type="VARCHAR(512)" />
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/layout/SiteHeader';
+import Footer from '../components/layout/Footer.astro';
+import { LocalizaOficinasPage } from '../components/oficinas/LocalizaOficinasPage';
+---
+
+<Layout
+  title="LDH — Localiza oficinas"
+  description="Mapa y listado de oficinas LDH. Busca por código postal, copia la dirección o ábrela en Google Maps."
+>
+  <SiteHeader client:load />
+  <main class="min-h-[70vh] bg-slate-50">
+    <LocalizaOficinasPage client:load />
+  </main>
+  <Footer />
+</Layout>

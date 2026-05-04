@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import WizardFooter from '../../components/checkout/WizardFooter.astro';
+import { WizardHeader } from '../../components/checkout/WizardHeader';
+import { ShippingStepOnePage } from '../../components/checkout/ShippingStepOnePage';
+---
+
+<Layout
+  title="LDH — Paso 1: elige tu servicio"
+  description="Selecciona el tipo de envío: oficina, domicilio y filtros. Resumen de tu cotización."
+>
+  <div class="flex min-h-screen flex-col">
+    <WizardHeader client:load />
+    <ShippingStepOnePage client:load />
+    <WizardFooter />
+  </div>
+</Layout>
