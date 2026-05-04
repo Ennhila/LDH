@@ -361,10 +361,10 @@ ldh/
 ![paso6](/Docs/UI%20-%20UX%20images/screencapture-localhost-4321-envio-exito-2026-05-04-13_02_50.png)
 
 7. Factura
-![factura](/Docs/pdf/LDH-factura-LDH-DG38-JFGJ.pdf)
+[factura](/Docs/pdf/LDH-factura-LDH-DG38-JFGJ.pdf)
 
 8. Shipment Label
-![etiqueta](/Docs/pdf/LDH-etiqueta-LDH-DG38-JFGJ.pdf)
+[Shipment Label](/Docs/pdf/LDH-etiqueta-LDH-DG38-JFGJ.pdf)
 
 ### Admin Panel
 
